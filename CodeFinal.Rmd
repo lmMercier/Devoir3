@@ -2,7 +2,7 @@
 title: "Devoir 3 - Version Finale"
 author: "Louis-Marc Mercier"
 date: "Wednesday, September 23, 2015"
-output: html_document
+output: pdf_document
 ---
 
 1)
@@ -30,7 +30,7 @@ Chic=get_map(location = c(-87.8,41.7,-87.5,42.0),zoom = 11, scale = "auto",
 maptype ="roadmap",messaging = FALSE,color ="color",source ="google")
 Chic2=ggmap(Chic,scale=2,extend="normal")
 ChicRouge=Chic2+geom_point(x=ChicagoCrimes$Longitude,y=ChicagoCrimes$Latitude,
-colour="red2",data=ChicagoCrimes,na.rm=TRUE,alpha=I(0.05),size=0.75)
+colour="red2",data=ChicagoCrimes,na.rm=TRUE,alpha=I(0.05),size=0.55)
 ChicRouge
 ```
 
