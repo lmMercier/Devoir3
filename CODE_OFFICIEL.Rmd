@@ -1,0 +1,54 @@
+---
+title: "Devoir 3"
+author: "Louis-Marc Mercier"
+date: "Sunday, September 20, 2015"
+output: html_document
+---
+1)
+
+L'île d'Alcatraz a popularisé San Francisco durant de multiples années
+pour le confinement d'un bon nombre de criminels malfaisants. Cette prison est maintenant
+une chose du passé, mais la criminalité dans cette ville ne s'est pas éteinte. Dans cette
+optique, certaines méthodes statistiques pourraient s'avérer efficaces en effectuant 
+de la classification de crimes.
+
+Des simulations des crimes pourraient alors être faites pour déterminer une 
+répartition des autorités policières à travers la ville. Si l'on ajoute la présence d'un
+indicateur de certitude, la répartition pourrait même potentiellement être optimisé à l'aide
+de méthodes liées à la recherche opérationnelle. Sans compter qu'il serait sûrement possible
+de réappliquer la démarche appliquée à San Francisco à d'autres villes américaines comme
+Washington, New York...et peut-être même à d'autres villes au niveau international. Ainsi, l'achat d'un tel programme mériterait une somme intéressante...bien supérieure à 50$.
+
+2)
+```{r}
+library(tseries)
+ChicagoCrimes=read.csv(url("https://data.cityofchicago.org/api/views/
+ijzp-q8t2/rows.csv?accessType=DOWNLOAD&bom=true"))
+library(ggmap);
+Chic=get_map(location = c(-87.8,41.7,-87.5,42.0),zoom = 11, scale = "auto",
+maptype ="roadmap",messaging = FALSE,color ="color",source ="google")
+Chic2=ggmap(Chic,scale=2,extend="normal")
+ChicRouge=Chic2+geom_point(x=ChicagoCrimes$Longitude,y=ChicagoCrimes$Latitude,
+colour="red2",data=ChicagoCrimes,na.rm=TRUE,alpha=I(0.05),size=0.75)
+ChicRouge
+```
+
+En se fiant à la carte obtenue, j'achèterais une maison dans le secteur où il semble y avoir le moins de crimes. Il s'agit de la région au-dessus de Benford Park, en dessous de l'autoroute 55 puis entre la route 43 et 50.
+
+3)
+
+```{r}
+Lat=na.omit(ChicagoCrimes$Latitude)
+Long=na.omit(ChicagoCrimes$Longitude)
+plot(density(Lat),xlab="Latitude",ylab="Densité",
+main="Densité des crimes commis selon la latitude")
+```
+
+4)
+
+```{r}
+library(MASS)
+V1=kde2d(Lat, Long, n = 40, lims = c(41.7,42,-87.5,-87.8))
+persp(x =sort(V1$x),y =sort(V1$y),z=V1$z, xlim =c(41.7,42), ylim =c(-87.8,-87.5), 
+zlim =c(0,150),xlab="Latitude",ylab="Longitude",zlab="Densité",phi=45)
+```
