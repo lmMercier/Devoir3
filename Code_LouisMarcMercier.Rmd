@@ -18,7 +18,7 @@ repartition des autorites policieres à travers la ville. Si l'on ajoute la prese
 indicateur de certitude, la repartition pourrait même potentiellement etre optimise a l'aide
 de methodes liees a la recherche operationnelle. Sans compter qu'il serait surement possible
 de reappliquer la demarche effectuee sur San Francisco a d'autres villes americaines comme
-Washington, New York...et peut-être même à d'autres villes au niveau international. Ainsi, l'achat d'un tel programme meriterait une somme intéressante...bien superieure à 50$.
+Washington, New York...et peut-etre même à d'autres villes au niveau international. Ainsi, l'achat d'un tel programme meriterait une somme interessante...bien superieure à 50$.
 
 2)
 ```{r}
